@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Información clara sobre la donación de órganos y tejidos en Colombia. Infórmate, reflexiona y conversa.">
+  <title>Donar informado | Donación de órganos en Colombia</title>
+
+  <style>
+    :root {
+      --navy: #12313a;
+      --teal: #087e78;
+      --mint: #dff3ec;
+      --coral: #e78366;
+      --cream: #fbf8f0;
+      --paper: #ffffff;
+      --ink: #20363b;
+      --muted: #52676b;
+      --line: #dce7e2;
+      --shadow: 0 14px 40px rgba(18, 49, 58, .09);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--teal); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--coral);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 10px;
+      z-index: 10;
+      background: white;
+      padding: 12px;
+    }
+
+    .skip-link:focus { left: 10px; }
+
+    header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1160px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: var(--mint);
+      color: var(--teal);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: .93rem;
+      font-weight: 650;
+    }
+
+    nav a:hover { color: var(--teal); }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 64px 0 48px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 38px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--teal);
+      font-size: .83rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    h1, h2, h3 { color: var(--navy); line-height: 1.15; }
+
+    h1 {
+      font-size: clamp(2.5rem, 5.5vw, 4.7rem);
+      letter-spacing: -.055em;
+      margin: 18px 0;
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.13rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 13px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      font-weight: 750;
+      border: 2px solid var(--teal);
+      transition: transform .15s ease, background .15s ease;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #066a65;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--teal);
+    }
+
+    .button.secondary:hover { background: var(--mint); }
+
+    .hero-art {
+      min-height: 350px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background:
+        radial-gradient(circle at 50% 45%, #e4f3e9 0 36%, transparent 37%),
+        radial-gradient(circle at 70% 20%, #f8dfd3 0 9%, transparent 10%),
+        radial-gradient(circle at 20% 75%, #dcecf4 0 11%, transparent 12%);
+      border-radius: 40px;
+    }
+
+    .hero-art svg { width: min(100%, 440px); height: auto; }
+
+    section { padding: 58px 0; }
+    .soft-section { background: #eef6f1; }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      margin: 10px 0;
+      letter-spacing: -.035em;
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .steps, .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--paper);
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--mint);
+      color: var(--teal);
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 { margin: 0 0 9px; font-size: 1.15rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      counter-reset: steps;
+    }
+
+    .process-card {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+    }
+
+    .process-card::before {
+      counter-increment: steps;
+      content: "0" counter(steps);
+      display: block;
+      color: var(--coral);
+      font-size: 1.3rem;
+      font-weight: 850;
+      margin-bottom: 12px;
+    }
+
+    .process-card h3 { margin: 0 0 8px; }
+    .process-card p { margin: 0; color: var(--muted); font-size: .96rem; }
+
+    .law-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      background: var(--navy);
+      color: white;
+      border-radius: 26px;
+      padding: 30px;
+    }
+
+    .law-box h2 { color: white; margin-top: 0; }
+    .law-box p { margin-bottom: 0; color: #dbe9e7; }
+    .law-box .button { background: #fff; color: var(--navy); border-color: white; }
+    .law-box .button:hover { background: var(--mint); }
+
+    .belief-note {
+      border-left: 5px solid var(--coral);
+      background: #fff4ee;
+      padding: 18px 20px;
+      border-radius: 0 16px 16px 0;
+      color: var(--ink);
+      margin-top: 20px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 850px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 17px 20px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--navy);
+      font-weight: 750;
+    }
+
+    details p { color: var(--muted); margin-bottom: 0; }
+
+    .conversation {
+      background: var(--mint);
+      border-radius: 24px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .conversation h2 { margin-top: 0; }
+
+    .quote {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      color: var(--ink);
+      border: 1px solid #cce4da;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .contact-card h3 { margin-top: 0; }
+    .contact-card p { color: var(--muted); }
+
+    .contact-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    footer {
+      background: var(--navy);
+      color: #dce9e7;
+      padding: 30px 0;
+      font-size: .9rem;
+    }
+
+    footer a { color: #b9eee0; }
+    footer p { margin: 5px 0; }
+
+    @media (max-width: 800px) {
+      .hero-grid, .law-box, .conversation { grid-template-columns: 1fr; }
+      .hero { padding-top: 42px; }
+      .hero-art { min-height: 260px; }
+      .steps, .cards { grid-template-columns: repeat(2, 1fr); }
+      .process { grid-template-columns: repeat(2, 1fr); }
+      .contact { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 540px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      nav ul { gap: 12px 18px; }
+      .container { width: min(100% - 28px, 1160px); }
+      .steps, .cards, .process { grid-template-columns: 1fr; }
+      section { padding: 42px 0; }
+      .law-box { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <header>
+    <div class="nav">
+      <a class="brand" href="#inicio" aria-label="Donar informado, ir al inicio">
+        <span class="brand-mark" aria-hidden="true">♡</span>
+        <span>Donar informado</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="#proceso">El proceso</a></li>
+          <li><a href="#ley">Ley y decisión</a></li>
+          <li><a href="#preguntas">Preguntas</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Información clara · Colombia</span>
+          <h1>Infórmate.<br>Reflexiona.<br><span style="color:var(--teal)">Conversa.</span></h1>
+          <p>
+            Conoce cómo funciona la donación de órganos y tejidos, resuelve tus dudas
+            y conversa con tu familia. La información debe ayudarte a decidir sin presión.
+          </p>
+          <div class="actions">
+            <a class="button" href="#proceso">Conocer el proceso <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#preguntas">Resolver mis dudas</a>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <svg viewBox="0 0 480 390" role="img" aria-labelledby="art-title art-desc">
+            <title id="art-title">Ilustración de cuidado y solidaridad</title>
+            <desc id="art-desc">Dos personas conversan junto a un corazón como símbolo de apoyo y vida.</desc>
+            <circle cx="240" cy="195" r="142" fill="#dff3ec"/>
+            <path d="M239 291c-24-21-91-62-91-111 0-40 50-57 91-14 41-43 91-26 91 14 0 49-67 90-91 111Z" fill="#e78366"/>
+            <path d="M239 272c-21-18-73-52-73-90 0-29 36-42 73-10 37-32 73-19 73 10 0 38-52 72-73 90Z" fill="#f7a48b"/>
+            <circle cx="139" cy="101" r="28" fill="#f2c7a5"/>
+            <path d="M96 212c0-46 17-78 43-78s43 32 43 78v20H96Z" fill="#087e78"/>
+            <path d="M113 229c-17 20-27 49-27 70h88c0-21-10-50-27-70Z" fill="#12313a"/>
+            <circle cx="340" cy="101" r="28" fill="#c98665"/>
+            <path d="M297 212c0-46 17-78 43-78s43 32 43 78v20h-86Z" fill="#e78366"/>
+            <path d="M314 229c-17 20-27 49-27 70h88c0-21-10-50-27-70Z" fill="#315c68"/>
+            <path d="M107 319h266" stroke="#12313a" stroke-width="8" stroke-linecap="round"/>
+            <path d="M240 155c-13-14-33-10-33 8 0 17 33 36 33 36s33-19 33-36c0-18-20-22-33-8Z" fill="#fff4ee"/>
+            <path d="M218 84c5-20 19-30 37-31M274 72c16 5 27 18 29 33" fill="none" stroke="#087e78" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft-section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Empecemos por lo esencial</span>
+          <h2>Una conversación que puede ayudar a alguien</h2>
+          <p>
+            La donación y el trasplante involucran a pacientes, familias y equipos de salud.
+            Informarse con fuentes confiables ayuda a reducir dudas y mitos.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="card">
+            <div class="icon" aria-hidden="true">♡</div>
+            <h3>Empatía</h3>
+            <p>Reconocer que detrás de una lista de espera hay personas y familias que necesitan atención y acompañamiento.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">ⓘ</div>
+            <h3>Información</h3>
+            <p>Entender el proceso, la evaluación médica, la ley y los canales oficiales antes de compartir información.</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">☏</div>
+            <h3>Diálogo</h3>
+            <p>Conversar con respeto sobre creencias, inquietudes y decisiones personales, sin presionar a nadie.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Paso a paso</span>
+          <h2>¿Cómo funciona, en términos generales?</h2>
+          <p>La evaluación y coordinación corresponden a profesionales y entidades autorizadas.</p>
+        </div>
+
+        <div class="process">
+          <article class="process-card">
+            <h3>Se verifica la situación médica</h3>
+            <p>Los equipos de salud aplican los criterios médicos correspondientes al caso.</p>
+          </article>
+          <article class="process-card">
+            <h3>Se evalúa cada órgano o tejido</h3>
+            <p>La aptitud depende de una evaluación médica; no se determina con una lista general.</p>
+          </article>
+          <article class="process-card">
+            <h3>La Red coordina</h3>
+            <p>La Red Nacional de Donación y Trasplante coordina procesos y actores en el país.</p>
+          </article>
+          <article class="process-card">
+            <h3>Se asigna con criterios</h3>
+            <p>La asignación sigue criterios técnico-científicos y clínicos establecidos para el sistema.</p>
+          </article>
+        </div>
+
+        <div class="belief-note">
+          <strong>Importante:</strong> tener una enfermedad, una discapacidad o una edad determinada
+          no permite concluir por cuenta propia que alguien no puede donar. La evaluación médica
+          define qué órganos o tejidos podrían ser aptos. Esta página no reemplaza una valoración
+          profesional.
+        </div>
+      </div>
+    </section>
+
+    <section class="soft-section" id="ley">
+      <div class="container">
+        <div class="law-box">
+          <div>
+            <h2>Ley, voluntad y autonomía</h2>
+            <p>
+              En Colombia, la Ley 1805 de 2016 establece la presunción legal de donación
+              cuando la persona no manifestó oposición en vida. También establece que la
+              voluntad de donación expresada por la persona solo puede ser revocada por ella
+              misma. Consulta el texto y la orientación oficial para conocer los detalles y
+              los mecanismos vigentes.
+            </p>
+          </div>
+          <a class="button"
+             href="https://www.ins.gov.co/Direcciones/RedesSaludPublica/DonacionOrganosYTejidos/Paginas/Marco-Legal,-Documentos-Tecnicos-y-Estadisticas.aspx"
+             target="_blank" rel="noopener noreferrer">
+            Consultar marco legal oficial
+          </a>
+        </div>
+
+        <div class="belief-note">
+          <strong>Creencias y cultura:</strong> las posturas religiosas y culturales pueden variar,
+          incluso dentro de una misma comunidad. El propósito de este recurso es informar con respeto,
+          no convencer ni juzgar.
+        </div>
+      </div>
+    </section>
+
+    <section id="preguntas">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Preguntas frecuentes</span>
+          <h2>Respuestas para empezar</h2>
+          <p>Si una respuesta no resuelve tu situación, consulta con Fundonar Colombia o con un profesional de salud.</p>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>¿Una condición de salud me descarta automáticamente?</summary>
+            <p>
+              No se puede determinar con una regla general. El equipo médico evalúa las circunstancias
+              y la aptitud de cada órgano o tejido. No te descartes por cuenta propia.
+            </p>
+          </details>
+
+          <details>
+            <summary>¿Qué papel tiene mi familia?</summary>
+            <p>
+              Es útil conversar con la familia para que conozca tus dudas y tu voluntad. La Ley 1805
+              regula la presunción legal y la voluntad expresada en vida; consulta la información
+              oficial para comprender cómo se aplica al caso concreto.
+            </p>
+          </details>
+
+          <details>
+            <summary>¿Tengo que compartir una creencia religiosa para donar?</summary>
+            <p>
+              No. Las creencias y posturas son personales y diversas. Puedes buscar orientación
+              en una persona de confianza de tu comunidad y consultar información médica oficial.
+            </p>
+          </details>
+
+          <details>
+            <summary>¿Se pueden comprar o vender órganos?</summary>
+            <p>
+              La donación se basa en principios altruistas y el proceso está sujeto a regulación
+              y coordinación institucional. Consulta el marco legal oficial para información normativa.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft-section">
+      <div class="container">
+        <div class="conversation">
+          <div>
+            <span class="eyebrow">Una invitación, no una presión</span>
+            <h2>Conversa con alguien de confianza</h2>
+            <p>Compartir preguntas y decisiones puede ayudar a que la familia entienda lo que piensas.</p>
+            <div class="quote" id="mensaje-familia">
+              “Quiero conversar contigo sobre la donación de órganos. Estoy buscando información
+              confiable para entender cómo funciona. ¿Qué dudas o creencias tienes tú? No quiero
+              presionarte; me gustaría que podamos hablarlo con respeto.”
+            </div>
+          </div>
+          <button class="button" type="button" id="copiar-mensaje">Copiar mensaje</button>
+        </div>
+        <p class="small-note" id="estado-copia" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Fuentes y apoyo</span>
+          <h2>¿Necesitas apoyo o más información?</h2>
+          <p>Consulta Fundonar Colombia para recibir orientación y apoyo relacionado con la donación y el trasplante.</p>
+        </div>
+
+        <div class="contact">
+          <article class="contact-card">
+            <h3>Apoyo: Fundonar Colombia</h3>
+            <p>
+              Si tienes dudas, buscas orientación o necesitas apoyo, visita la página de
+              Fundonar Colombia y consulta las opciones de contacto disponibles allí.
+            </p>
+            <div class="contact-links">
+              <a class="button"
+                 href="https://fundonarcolombia.com/"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Visitar Fundonar Colombia
+              </a>
+            </div>
+          </article>
+
+          <article class="contact-card">
+            <h3>Información oficial: Instituto Nacional de Salud</h3>
+            <p>
+              Consulta la Red Nacional de Donación y Trasplante, el marco legal,
+              documentos técnicos y estadísticas.
+            </p>
+            <div class="contact-links">
+              <a class="button"
+                 href="https://www.ins.gov.co/Direcciones/RedesSaludPublica/DonacionOrganosYTejidos/Paginas/default.aspx"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Visitar la Red del INS
+              </a>
+              <a class="button secondary"
+                 href="https://www.ins.gov.co/Direcciones/RedesSaludPublica/DonacionOrganosYTejidos/Paginas/Marco-Legal,-Documentos-Tecnicos-y-Estadisticas.aspx"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Marco legal y estadísticas
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <p class="small-note" style="margin-top:22px">
+          Información educativa. No es asesoría médica ni jurídica. La normativa y los canales
+          pueden actualizarse; verifica los detalles en las fuentes oficiales antes de actuar.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Donar informado</strong> · Recurso educativo sobre donación de órganos en Colombia.</p>
+      <p>Diseñado para informar con claridad, respeto y autonomía.</p>
+    </div>
+  </footer>
+
+  <script>
+    const botonCopiar = document.getElementById("copiar-mensaje");
+    const textoMensaje = document.getElementById("mensaje-familia").innerText;
+    const estadoCopia = document.getElementById("estado-copia");
+
+    botonCopiar.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(textoMensaje);
+        estadoCopia.textContent = "Mensaje copiado. Puedes pegarlo en tu chat o correo.";
+      } catch (error) {
+        estadoCopia.textContent =
+          "No se pudo copiar automáticamente. Selecciona el texto y cópialo manualmente.";
+      }
+    });
+  </script>
+</body>
+</html>
